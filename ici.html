@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iciar Ochoa | Pintura Contemporánea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0px;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(255,255,255,0.85);
+  padding: 1rem 3rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin-left: 2rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #666;
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #222;
+  padding-top: 5rem;
+}
+
+.hero-text {
+  padding: 3rem;
+  background: rgba(255,255,255,0.85);
+  border-radius: 10px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-text a {
+  padding: 0.8rem 2rem;
+  background: #000;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hero-text a:hover {
+  background: #444;
+}
+
+section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.bio {
+  background-color: rgba(234, 229, 223, 0.95);
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  animation: fadeIn 2s ease-in;
+}
+
+.bio img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 4px solid #eee;
+}
+
+.bio h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.bio p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.grid-cuadros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.cuadro {
+  background: rgba(234, 229, 223, 0.95);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.cuadro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.cuadro img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cuadro img:hover {
+  transform: scale(1.05);
+}
+
+.cuadro h3 {
+  font-size: 1.2rem;
+  padding: 1rem 1rem 0.5rem;
+  font-weight: 400;
+}
+
+.cuadro p {
+  padding: 0 1rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.info-content {
+  background: rgba(234, 229, 223, 0.95);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.info-content h3 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.info-content p {
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+.boton {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #333;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+  margin: 0.5rem;
+}
+
+.boton:hover {
+  background: #555;
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 5rem;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #ccc;
+  margin: 4rem 0;
+}
+
+.quote {
+  font-style: italic;
+  text-align: center;
+  color: #444;
+  margin: 3rem auto;
+  max-width: 800px;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 600px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  nav a {
+    margin: 0.5rem 0;
+  }
+}
+
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.formulario-contacto label {
+  font-weight: bold;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.formulario-contacto button {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulario-contacto button:hover {
+  background-color: #555;
+}
+
+    .filtro-precio {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .filtro-precio select {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      background-color: white;
+      font-family: inherit;
+    }
+
+
+    
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo-container">
+      <span class="logo-text">Iciar Ochoa</span>
+      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+    </div>
+    <div>
+      <a href="#inicio">Galería</a>
+      <a href="sobre-mi.html">Sobre Mi</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio">
+    <div class="hero-text">
+      <h1>Pintura contemporánea con alma</h1>
+      <p>Obras que capturan la emoción del instante a través del color y la materia</p>
+      <a href="#galeria"><i class="fas fa-paint-brush"></i> Ver obras</a>
+    </div>
+  </header>
+
+
+
+  <hr>
+
+  <section id="galeria">
+    <h2 style="text-align:center; font-size:2rem; margin-bottom:2rem;">Obras Disponibles</h2>
+    
+      <!-- Fila 1 -->
+        <!-- FILTRO DE PRECIO -->
+    <div class="filtro-precio">
+      <label for="ordenar">Filtrar por:</label>
+      <select id="ordenar">
+        <option value="default">Seleccionar</option>
+        <option value="asc">Precio de menor a mayor</option>
+        <option value="desc">Precio de mayor a menor</option>
+      </select>
+    </div>
+
+    <!-- CONTENEDOR DE CUADROS -->
+    <div class="grid-cuadros" id="contenedor-cuadros">
+      <div class="cuadro">
+        <a href="Lavanda.html"><img src="lavanda.jpg" alt="Obra original"></a>
+        <h3>Lavanda y Pajaros</h3>
+        <p>Acrílico y pan de oro sobre lienzo y tabla· 50x50 cm</p>
+        <p>150 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="hortensias.html"><img src="sobre_tabla.jpg" alt="Cuadro 1"></a>
+        <h3>Hortensias sobre tabla</h3>
+        <p>Acrílico y pan de oro · 70x50 cm</p>
+        <p>120 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="Nubes.html"><img src="nubes.jpg" alt="Cuadro 2"></a>
+        <h3>Nubes</h3>
+        <p>Óleo · 100x81 cm</p>
+        <p>290 €</p>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="cuadro">
+        <a href="eucalipto1.html"><img src="Eucalipto1.jpg" alt="Cuadro 4"></a>
+        <h3>Eucalipto I</h3>
+        <p>Óleo · 50x50 cm</p>
+        <p>170 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="eucalipto2.html"><img src="Eucalipto2.jpg" alt="Cuadro 5"></a>
+        <h3>Eucalipto II</h3>
+        <p>Óleo · 50x50 cm</p>
+        <p>170 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="linoycuerdas.html"><img src="lino_cuerda.jpg" alt="Cuadro 6"></a>
+        <h3>Lino y cuerdas</h3>
+        <p>Acuarela · 32x42 cm</p>
+        <p>95 €</p>
+      </div>
+
+      <!-- Fila 3 -->
+      <div class="cuadro">
+        <a href="mujer.html"><img src="Mujer.jpg" alt="Cuadro 7"></a>
+        <h3>Mujer</h3>
+        <p>Óleo · 50x50 cm</p>
+        <p>190 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="grantormenta.html"><img src="Gt.jpg" alt="Cuadro 8"></a>
+        <h3>Gran tormenta</h3>
+        <p>Acuarela · 70x50 cm</p>
+        <p>130 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="tormentavertical.html"><img src="tormenta.jpg" alt="Cuadro 9"></a>
+        <h3>Tormenta vertical</h3>
+        <p>Acuarela · 30x24 cm</p>
+        <p>80 €</p>
+      </div>
+
+      <!-- Fila 4 -->
+      <div class="cuadro">
+        <a href="nubarron.html"><img src="nubarron.jpg" alt="Cuadro 10"></a>
+        <h3>Nubarrón</h3>
+        <p>Acuarela · 30x24 cm</p>
+        <p>80 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="surfero1.html"><img src="Surfero1.jpg" alt="Cuadro 11"></a>
+        <h3>Surfero I</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="surfero2.html"><img src="Surfero2.jpg" alt="Cuadro 12"></a>
+        <h3>Surfero II</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      
+      
+      <!-- Fila 5 -->
+      <div class="cuadro">
+        <a href="kiosko.html"><img src="kiosko.jpg" alt="Cuadro 13"></a>
+        <h3>Kiosko Plaza Castillo</h3>
+        <p>Acuarela · 50x50 cm</p>
+        <p>200 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="caballo.html"><img src="caballo.jpeg" alt="Cuadro 14"></a>
+        <h3>Caballo Blanco</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="sf.html"><img src="sf.jpeg" alt="Cuadro 15"></a>
+        <h3>San Fermin Serie Sepia</h3>
+        <p>Acuarela · 30x30 cm</p>
+        <p>110 €</p>
+      </div>
+      
+      <!-- Fila 6 -->
+      <div class="cuadro">
+        <a href="flor1.html"><img src="florescuerda1.jpg" alt="Cuadro 13"></a>
+        <h3>Flores y Cuerda I</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>95 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="flor2.html"><img src="florescuerda2.jpg" alt="Cuadro 13"></a>
+        <h3>Flores y Cuerda II</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>95 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="ciudadela.html"><img src="ciudadela.jpg" alt="Cuadro 13"></a>
+        <h3>Ciudadela</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      
+      <!-- Fila 7 -->
+      <div class="cuadro">
+        <a href="puerta1.html"><img src="puerta1.jpg" alt="Cuadro 13"></a>
+        <h3>Puerta I</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="puerta2.html"><img src="puerta2.jpg" alt="Cuadro 13"></a>
+        <h3>Puerta II</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="puerta3.html"><img src="puerta_3.jpeg" alt="Cuadro 13"></a>
+        <h3>Puerta III</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      
+      <!-- Fila 8 -->
+      <div class="cuadro">
+        <a href="retiro.html"><img src="retiro.jpg" alt="Cuadro 13"></a>
+        <h3>Retiro</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="sol.html"><img src="sol.jpg" alt="Cuadro 13"></a>
+        <h3>Sol</h3>
+        <p>Acrilico y pan de oro · 50x50 cm</p>
+        <p>150 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="peces.html"><img src="peces.jpeg" alt="Cuadro 13"></a>
+        <h3>Peces</h3>
+        <p>Acuarela · 24x18 cm</p>
+        <p>60 €</p>
+      </div>
+    
+    </div>
+  </section>
+
+   <!-- FRASE DESTACADA -->
+  <section>
+    <div class="quote">
+      <p>“La pintura es poesía silenciosa; y la poesía es pintura que habla.” — Leonardo da Vinci</p>
+    </div>
+  </section>
+
+  <hr>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+  </footer>
+  
+   <!-- SCRIPT PARA ORDENAR -->
+  <script>
+  document.getElementById('ordenar').addEventListener('change', function () {
+    const orden = this.value;
+    const contenedor = document.getElementById('contenedor-cuadros');
+    const cuadros = Array.from(contenedor.querySelectorAll('.cuadro'));
+
+    const obtenerPrecio = cuadro => {
+      const texto = cuadro.querySelector('p:last-of-type')?.innerText || '';
+      return parseFloat(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
+    };
+
+    if (orden === 'asc') {
+      cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
+    } else if (orden === 'desc') {
+      cuadros.sort((a, b) => obtenerPrecio(b) - obtenerPrecio(a));
+    } else {
+      return; // No ordenar si es la opción "Seleccionar"
+    }
+
+    // Vacía el contenedor y vuelve a añadir los cuadros ordenados
+    contenedor.innerHTML = '';
+    cuadros.forEach(cuadro => contenedor.appendChild(cuadro));
+  });
+</script>
+
+
+
+
+</body>
+</html>

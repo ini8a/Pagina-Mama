@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto | Iciar Ochoa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Para íconos de redes -->
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-container">
+      <span class="logo-text">Iciar Ochoa</span>
+      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+    </div>
+    <div>
+      <a href="ici.html">GALERIA</a>
+      <a href="sobre-mi.html">SOBRE MI</a>
+      <a href="contacto.html">CONTACTO</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <section>
+      <h2 style="text-align:center; margin-bottom: 1rem;">Contacto</h2>
+      <p style="text-align:center; margin-bottom: 2rem;">Puedes escribirme directamente usando el siguiente formulario o contactar por redes:</p>
+
+      <div class="info-content" style="max-width: 500px; margin: auto; text-align: center;">
+        <!-- Datos de contacto visibles -->
+        <p>
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:iciarochoa@gmail.com" style="text-decoration: none; color: inherit;">iciarochoa@gmail.com</a>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i>
+          <span style="color: inherit;">+34 636 52 83 21</span>
+        </p>
+
+        <!-- Formulario -->
+        <form class="formulario-contacto" action="https://formspree.io/f/xyzjwpda" method="POST" style="text-align: left; margin-top: 2rem;">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 600 555 555" required>
+
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+
+        <!-- Redes sociales -->
+        <div style="margin-top: 2rem;">
+          <h3>Redes Sociales</h3>
+          <p>
+            <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank" style="margin-right: 10px;">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+              <i class="fab fa-facebook"></i> Facebook
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

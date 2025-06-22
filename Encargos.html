@@ -94,42 +94,49 @@
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init("lN9brzrkNE85v8Rnw");
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("lN9brzrkNE85v8Rnw");
 
-    function enviarFormulario(e) {
-      e.preventDefault();
+  function enviarFormulario(e) {
+    e.preventDefault();
 
-      const form = document.getElementById("formulario-encargo");
-      const fileInput = document.getElementById("imagen");
-      const reader = new FileReader();
+    const form = document.getElementById("formulario-encargo");
+    const fileInput = document.getElementById("imagen");
 
-      reader.onload = function () {
-        const base64 = reader.result.split(",")[1];
-        const fileName = fileInput.files[0].name;
-
-        emailjs.send("service_bqohatk", "template_mfacoqe", {
-          user_name: form.nombre.value,
-          user_email: form.email.value,
-          message: form.mensaje.value,
-          imagen_base64: base64,
-          imagen_nombre: fileName
-        }).then(() => {
-          alert("Encargo enviado correctamente 🎨");
-          form.reset();
-        }, (error) => {
-          console.error("Error al enviar", error);
-          alert("Error al enviar el formulario. Intenta más tarde.");
-        });
-      };
-
-      if (fileInput.files.length > 0) {
-        reader.readAsDataURL(fileInput.files[0]);
-      } else {
-        alert("Por favor, adjunta una imagen.");
-      }
+    if (fileInput.files.length === 0) {
+      alert("Por favor, adjunta una imagen.");
+      return;
     }
-  </script>
+
+    const reader = new FileReader();
+    const file = fileInput.files[0];
+
+    reader.onload = function () {
+      const result = reader.result;
+      const base64 = result.split(",")[1];
+      const mimeMatch = result.match(/^data:(.*);base64,/);
+      const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg"; // fallback
+
+      emailjs.send("service_bqohatk", "template_mfacoqe", {
+        user_name: form.nombre.value,
+        user_email: form.email.value,
+        message: form.mensaje.value,
+        imagen_base64: base64,
+        imagen_nombre: file.name,
+        imagen_mime: mimeType
+      }).then(() => {
+        alert("Encargo enviado correctamente 🎨");
+        form.reset();
+      }, (error) => {
+        console.error("Error al enviar", error);
+        alert("Error al enviar el formulario. Intenta más tarde.");
+      });
+    };
+
+    reader.readAsDataURL(file);
+  }
+</script>
 </head>
 <body>
   <nav>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encargos | Iciar Ochoa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .formulario-contacto {
+      background: #fefefe;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .formulario-contacto label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .formulario-contacto input,
+    .formulario-contacto textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    .formulario-contacto input[type="file"] {
+      padding: 0.5rem 0;
+    }
+
+    .formulario-contacto button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .formulario-contacto button:hover {
+      background-color: #555;
+    }
+    
+    .imagenes-dobles {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.imagenes-dobles img {
+  width: 48%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: contain;
+  background-color: #f0f0f0;
+}
+.grid-cuadros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cuadro {
+  background: rgba(234, 229, 223, 0.95);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  padding-bottom: 1rem;
+}
+
+.cuadro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("lN9brzrkNE85v8Rnw");
+
+    function enviarFormulario(e) {
+      e.preventDefault();
+
+      const form = document.getElementById("formulario-encargo");
+      const fileInput = document.getElementById("imagen");
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        const base64 = reader.result.split(",")[1];
+        const fileName = fileInput.files[0].name;
+
+        emailjs.send("service_bqohatk", "template_mfacoqe", {
+          user_name: form.nombre.value,
+          user_email: form.email.value,
+          message: form.mensaje.value,
+          imagen_base64: base64,
+          imagen_nombre: fileName
+        }).then(() => {
+          alert("Encargo enviado correctamente 🎨");
+          form.reset();
+        }, (error) => {
+          console.error("Error al enviar", error);
+          alert("Error al enviar el formulario. Intenta más tarde.");
+        });
+      };
+
+      if (fileInput.files.length > 0) {
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        alert("Por favor, adjunta una imagen.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <span class="logo-text">Iciar Ochoa</span>
+      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+    </div>
+    <div>
+      <a href="ici.html#inicio">OBRAS DISPONIBLES</a>
+      <a href="Encargos.html">Encargos</a>
+      <a href="sobre-mi.html">Sobre Mi</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="info-content">
+      <h1>Encargos Realizados</h1>
+      <p><strong>¿Tienes una imagen especial que te gustaría convertir en arte?</strong></p>
+      <p>Te presento algunos encargos realizados: obras únicas creadas a partir de fotografías personales, momentos inolvidables o paisajes significativos. Cada encargo es una colaboración en la que transformo tu ilusión en una pieza original y llena de alma.</p>
+      <p>Ya sea un lugar, una mascota, un momento especial… cualquier recuerdo que quieras inmortalizar, estaré encantada de trabajar contigo para darle forma .</p>
+      <p><strong>Si quieres hacerme un encargo, completa el formulario y adjunta una foto de lo que quieres. Haremos tu cuadro a tu gusto, hecho especialmente para ti.</strong></p>
+    </section>
+
+    <section class="info-content">
+      <h3>Formulario de Encargos</h3>
+      <form id="formulario-encargo" class="formulario-contacto" onsubmit="enviarFormulario(event)">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje o idea para el encargo</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <label for="imagen">Adjuntar imagen (jpg/png)</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+        <button type="submit">Enviar encargo</button>
+      </form>
+    </section>
+
+    <section class="grid-cuadros">
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="perroO.jpeg" alt="Foto original">
+            <img src="perroC.jpeg" alt="Obra final">
+        </div>
+        <h3>Mascotas</h3>
+      </div>
+
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="playaO.jpeg" alt="Foto original">
+            <img src="playaC.jpeg" alt="Obra final">
+        </div>
+        <h3>Un rincon especial</h3>
+      </div>
+      
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="padelO.jpeg" alt="Foto original">
+            <img src="padelC.jpeg" alt="Obra final">
+        </div>
+        <h3>Aficiones. Deportes</h3>
+      </div>
+
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="flamencaO.jpeg" alt="Foto original">
+            <img src="flamencaC.jpeg" alt="Obra final">
+        </div>
+        <h3>Aficiones. Sevillanas<h3>
+      </div>
+      
+            <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="ochoasO.jpeg" alt="Foto original">
+            <img src="ochoasC.jpeg" alt="Obra final">
+        </div>
+        <h3>Momentos para recordar</h3>
+      </div>
+
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="rioO.jpeg" alt="Foto original">
+            <img src="rioC.jpeg" alt="Obra final">
+        </div>
+        <h3>Un lugar especial</h3>
+      </div>
+      
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

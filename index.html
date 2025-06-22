@@ -170,8 +170,10 @@ section {
 
 .cuadro img {
   width: 100%;
-  height: 320px;
-  object-fit: cover;
+  max-height: 350px;
+  object-fit: contain;
+  background-color: #f8f8f8;
+  padding: 0.5rem;
   transition: transform 0.3s ease;
 }
 
@@ -273,6 +275,9 @@ hr {
   nav a {
     margin: 0.5rem 0;
   }
+    .cuadro img {
+    max-height: 250px;
+  }
 }
 
 .formulario-contacto {
@@ -339,6 +344,7 @@ hr {
     </div>
     <div>
       <a href="#inicio">Galería</a>
+      <a href="Encargos.html">Encargos</a>
       <a href="sobre-mi.html">Sobre Mi</a>
       <a href="contacto.html">Contacto</a>
     </div>
@@ -348,8 +354,6 @@ hr {
   <header id="inicio">
     <div class="hero-text">
       <h1>Pintura contemporánea con alma</h1>
-      <p>Obras que capturan la emoción del instante a través del color y la materia</p>
-      <a href="#galeria"><i class="fas fa-paint-brush"></i> Ver obras</a>
     </div>
   </header>
 
@@ -366,9 +370,11 @@ hr {
       <label for="ordenar">Filtrar por:</label>
       <select id="ordenar">
         <option value="default">Seleccionar</option>
-        <option value="asc">Precio de menor a mayor</option>
-        <option value="desc">Precio de mayor a menor</option>
-      </select>
+        <option value="tecnica">Técnica</option>
+        <option value="asc">Precio</option>
+        <option value="desc">Tamaño</option>
+    </select>
+
     </div>
 
     <!-- CONTENEDOR DE CUADROS -->
@@ -532,6 +538,20 @@ hr {
         <p>Acuarela · 24x18 cm</p>
         <p>60 €</p>
       </div>
+      
+      <!-- Fila 9 -->
+      <div class="cuadro">
+        <a href="hortensias2.html"><img src="horten.jpeg" alt="Cuadro 13"></a>
+        <h3>Hortensias</h3>
+        <p>Acuarela · 65x55 cm</p>
+        <p>140 €</p>
+      </div>
+      <div class="cuadro">
+        <a href="Olas.html"><img src="olas.jpeg" alt="Cuadro 13"></a>
+        <h3>Olas</h3>
+        <p>Acuarela · 42x32 cm</p>
+        <p>80 €</p>
+      </div>
     
     </div>
   </section>
@@ -539,7 +559,7 @@ hr {
    <!-- FRASE DESTACADA -->
   <section>
     <div class="quote">
-      <p>“La pintura es poesía silenciosa; y la poesía es pintura que habla.” — Leonardo da Vinci</p>
+      <p>“Un artista no debe pintar lo que ve, sino lo que siente. La verdad del arte está en el sentimiento.” — Joaquin Sorolla</p>
     </div>
   </section>
 
@@ -563,19 +583,42 @@ hr {
       return parseFloat(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
     };
 
+    const obtenerTecnica = cuadro => {
+      const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
+      if (texto.includes('óleo')) return 1;
+      if (texto.includes('acrílico')) return 2;
+      if (texto.includes('acuarela')) return 3;
+      return 4;
+    };
+
+    const obtenerTamano = cuadro => {
+      const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
+      const regex = /(\d+)\s*x\s*(\d+)/i;
+      const match = texto.match(regex);
+      if (match) {
+        const ancho = parseInt(match[1]);
+        const alto = parseInt(match[2]);
+        return ancho * alto; // área en cm²
+      }
+      return Infinity;
+    };
+
     if (orden === 'asc') {
       cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
-    } else if (orden === 'desc') {
-      cuadros.sort((a, b) => obtenerPrecio(b) - obtenerPrecio(a));
+    } else if (orden === 'tecnica') {
+      cuadros.sort((a, b) => obtenerTecnica(a) - obtenerTecnica(b));
+    } else if (orden === 'tamano') {
+      cuadros.sort((a, b) => obtenerTamano(a) - obtenerTamano(b));
     } else {
-      return; // No ordenar si es la opción "Seleccionar"
+      return;
     }
 
-    // Vacía el contenedor y vuelve a añadir los cuadros ordenados
     contenedor.innerHTML = '';
     cuadros.forEach(cuadro => contenedor.appendChild(cuadro));
   });
 </script>
+
+
 
 
 

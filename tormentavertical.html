@@ -193,6 +193,76 @@
     .boton-correo:hover {
       background: #8c5555;
     }
+    
+        /* PANEL LATERAL DE FORMULARIO */
+    .formulario-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 400px;
+      max-width: 90%;
+      height: 100%;
+      background-color: white;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 3000;
+      padding: 2rem 2rem 4rem 2rem;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .formulario-panel.active {
+      right: 0;
+    }
+
+    .formulario-panel h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #222;
+    }
+
+    .formulario-panel label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    .formulario-panel input,
+    .formulario-panel textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .formulario-panel button {
+      margin-top: 1.5rem;
+      width: 100%;
+      background-color: #a86d6d;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .formulario-panel button:hover {
+      background-color: #8c5555;
+    }
+
+        .cerrar-formulario {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
 
   </style>
 </head>
@@ -203,21 +273,21 @@
       <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
-      <a href="index.html#inicio">Inicio</a>
-      <a href="index.html#galeria">Galería</a>
-      <a href="index.html#info">Información</a>
+      <a href="ici.html#inicio">Galería</a>
+      <a href="Encargos.html">Encargos</a>
+      <a href="sobre-mi.html">Sobre mi</a>
+      <a href="contacto.html">Contacto</a>
     </div>
   </nav>
   <div class="container">
     <div class="obra-detalle">
       <img src="tormenta.jpg" alt="Tormenta vertical">
       <h1>Tormenta vertical</h1>
-      <p>Acuarela · 30x24 cm</p>
+      <p>Acuarela · 42x32 cm</p>
       <p>Precio: 80 €</p>
       <p>Obra en formato vertical que interpreta una tormenta con pinceladas expresivas y un dinamismo ascendente.</p>
       
-      <a class="boton-correo" href="mailto:iciarochoa@gmail.com?subject=Interesado%20en%20obra&body=Hola%2C%20estoy%20interesado%20en%20la%20obra%20%22Lavanda%20y%20Pájaros%22.%20%C2%BFPodr%C3%ADas%20darme%20m%C3%A1s%20informaci%C3%B3n%3F">Contactar por correo</a>
-      
+<a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>      
       <div class="fotos-adicionales">
         
         <div class="galeria">
@@ -232,7 +302,31 @@
   <footer>
     <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
   </footer>
-  
+    <!-- FORMULARIO LATERAL -->
+<div class="formulario-panel" id="formularioPanel">
+  <h2>Solicitar información</h2>
+  <form id="formularioContacto" action="https://formspree.io/f/xyzjwpda" method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 500 000 000" required>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" rows="5" required>Estoy interesado/a en la obra "NOMBRE DE LA OBRA". Me gustaría recibir más información.</textarea>
+
+    <!-- Campo oculto con el nombre del archivo -->
+    <input type="hidden" id="paginaOrigen" name="paginaOrigen" value="">
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Botón cerrar -->
+  <button class="cerrar-formulario" onclick="cerrarFormulario()">Volver</button>
+</div>
     <!-- Visor ampliado -->
   <div class="visor-overlay" id="visor">
     <img src="" alt="Imagen ampliada">
@@ -258,6 +352,30 @@
       }
     });
   </script>
+  <script>
+  function abrirFormulario() {
+    document.getElementById('formularioPanel').classList.add('active');
+  }
+
+  function cerrarFormulario() {
+    document.getElementById('formularioPanel').classList.remove('active');
+  }
+
+  // Insertar automáticamente el nombre del archivo HTML en el formulario
+  document.addEventListener("DOMContentLoaded", () => {
+    const ruta = window.location.pathname.split("/").pop(); // nombre.html
+    const campo = document.getElementById("paginaOrigen");
+    if (campo) campo.value = ruta;
+
+    // También actualiza el texto del mensaje con el nombre real de la obra
+    const obra = document.querySelector("h1")?.innerText || "";
+    const mensaje = document.getElementById("mensaje");
+    if (mensaje && obra) {
+      mensaje.textContent = `Estoy interesado/a en la obra "${obra}". Me gustaría recibir más información.`;
+    }
+  });
+</script>
+
   
 </body>
 </html>

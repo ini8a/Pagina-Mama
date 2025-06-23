@@ -8,135 +8,53 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
-    .formulario-contacto {
-      background: #fefefe;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      margin: 2rem auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .formulario-contacto label {
-      font-weight: bold;
-      color: #333;
-    }
-
-    .formulario-contacto input,
-    .formulario-contacto textarea {
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      background: #fff;
-    }
-
-    .formulario-contacto input[type="file"] {
-      padding: 0.5rem 0;
-    }
-
-    .formulario-contacto button {
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .formulario-contacto button:hover {
-      background-color: #555;
-    }
-    
     .imagenes-dobles {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
 
-.imagenes-dobles img {
-  width: 48%;
-  height: auto;
-  border-radius: 6px;
-  object-fit: contain;
-  background-color: #f0f0f0;
-}
-.grid-cuadros {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+    .imagenes-dobles img {
+      width: 48%;
+      height: auto;
+      border-radius: 6px;
+      object-fit: contain;
+      background-color: #f0f0f0;
+    }
 
-.cuadro {
-  background: rgba(234, 229, 223, 0.95);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s;
-  padding-bottom: 1rem;
-}
+    .grid-cuadros {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.cuadro:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+    .cuadro {
+      background: rgba(234, 229, 223, 0.95);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      padding-bottom: 1rem;
+    }
 
 
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("lN9brzrkNE85v8Rnw");
-
-  function enviarFormulario(e) {
-    e.preventDefault();
-
-    const form = document.getElementById("formulario-encargo");
-    const fileInput = document.getElementById("imagen");
-
-    if (fileInput.files.length === 0) {
-      alert("Por favor, adjunta una imagen.");
-      return;
-    }
-
-    const reader = new FileReader();
-    const file = fileInput.files[0];
-
-    reader.onload = function () {
-      const result = reader.result;
-      const base64 = result.split(",")[1];
-      const mimeMatch = result.match(/^data:(.*);base64,/);
-      const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg"; // fallback
-
-      emailjs.send("service_bqohatk", "template_mfacoqe", {
-        user_name: form.nombre.value,
-        user_email: form.email.value,
-        message: form.mensaje.value,
-        imagen_base64: base64,
-        imagen_nombre: file.name,
-        imagen_mime: mimeType
-      }).then(() => {
-        alert("Encargo enviado correctamente 🎨");
-        form.reset();
-      }, (error) => {
-        console.error("Error al enviar", error);
-        alert("Error al enviar el formulario. Intenta más tarde.");
-      });
-    };
-
-    reader.readAsDataURL(file);
+  <style>
+  /* Anula el hover solo para este archivo */
+  body .grid-cuadros .cuadro:hover {
+    transform: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
   }
-</script>
+
+  body .grid-cuadros .cuadro img:hover {
+    transform: none !important;
+  }
+</style>
+
 </head>
 <body>
   <nav>
@@ -157,27 +75,7 @@
       <h1>Encargos Realizados</h1>
       <p><strong>¿Tienes una imagen especial que te gustaría convertir en arte?</strong></p>
       <p>Te presento algunos encargos realizados: obras únicas creadas a partir de fotografías personales, momentos inolvidables o paisajes significativos. Cada encargo es una colaboración en la que transformo tu ilusión en una pieza original y llena de alma.</p>
-      <p>Ya sea un lugar, una mascota, un momento especial… cualquier recuerdo que quieras inmortalizar, estaré encantada de trabajar contigo para darle forma .</p>
-      <p><strong>Si quieres hacerme un encargo, completa el formulario y adjunta una foto de lo que quieres. Haremos tu cuadro a tu gusto, hecho especialmente para ti.</strong></p>
-    </section>
-
-    <section class="info-content">
-      <h3>Formulario de Encargos</h3>
-      <form id="formulario-encargo" class="formulario-contacto" onsubmit="enviarFormulario(event)">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required>
-
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="mensaje">Mensaje o idea para el encargo</label>
-        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-        <label for="imagen">Adjuntar imagen (jpg/png)</label>
-        <input type="file" id="imagen" name="imagen" accept="image/*" required>
-
-        <button type="submit">Enviar encargo</button>
-      </form>
+      <p>Ya sea un lugar, una mascota, un momento especial… cualquier recuerdo que quieras inmortalizar, estaré encantada de trabajar contigo para darle forma.</p>
     </section>
 
     <section class="grid-cuadros">
@@ -188,13 +86,21 @@
         </div>
         <h3>Mascotas</h3>
       </div>
+      
+      <div class="cuadro">
+        <div class="imagenes-dobles">
+            <img src="flamencaO.jpeg" alt="Foto original">
+            <img src="flamencaC.jpeg" alt="Obra final">
+        </div>
+        <h3>Aficiones. Sevillanas</h3>
+      </div>
 
       <div class="cuadro">
         <div class="imagenes-dobles">
             <img src="playaO.jpeg" alt="Foto original">
             <img src="playaC.jpeg" alt="Obra final">
         </div>
-        <h3>Un rincon especial</h3>
+        <h3>Un rincón especial</h3>
       </div>
       
       <div class="cuadro">
@@ -205,15 +111,8 @@
         <h3>Aficiones. Deportes</h3>
       </div>
 
-      <div class="cuadro">
-        <div class="imagenes-dobles">
-            <img src="flamencaO.jpeg" alt="Foto original">
-            <img src="flamencaC.jpeg" alt="Obra final">
-        </div>
-        <h3>Aficiones. Sevillanas<h3>
-      </div>
       
-            <div class="cuadro">
+      <div class="cuadro">
         <div class="imagenes-dobles">
             <img src="ochoasO.jpeg" alt="Foto original">
             <img src="ochoasC.jpeg" alt="Obra final">
@@ -228,7 +127,6 @@
         </div>
         <h3>Un lugar especial</h3>
       </div>
-      
     </section>
   </main>
 

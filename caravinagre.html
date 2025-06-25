@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caravinagre | Iciar Ochoa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0px;
+}
+
+
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(255,255,255,0.85);
+      padding: 1rem 3rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    .container {
+      padding-top: 8rem;
+      max-width: 1000px;
+      margin: auto;
+      padding: 5rem 2rem;
+    }
+
+    .obra-detalle {
+      background-color: rgba(234, 229, 223, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .obra-detalle img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .obra-detalle h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    .obra-detalle p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #333;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .volver:hover {
+      background: #555;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 5rem;
+    }
+    
+    .fotos-adicionales {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .fotos-adicionales h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .galeria img {
+      max-width: 100%;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.03);
+    }
+
+    .visor-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .visor-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .boton-correo {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #a86d6d;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .boton-correo:hover {
+      background: #8c5555;
+    }
+        /* PANEL LATERAL DE FORMULARIO */
+    .formulario-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 400px;
+      max-width: 90%;
+      height: 100%;
+      background-color: white;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 3000;
+      padding: 2rem 2rem 4rem 2rem;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .formulario-panel.active {
+      right: 0;
+    }
+
+    .formulario-panel h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #222;
+    }
+
+    .formulario-panel label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    .formulario-panel input,
+    .formulario-panel textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .formulario-panel button {
+      margin-top: 1.5rem;
+      width: 100%;
+      background-color: #a86d6d;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .formulario-panel button:hover {
+      background-color: #8c5555;
+    }
+
+        .cerrar-formulario {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
+    
+    .boton {
+  display: inline-block;
+  background: #333;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.boton:hover {
+  background: #555;
+}
+  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+
+  /* Tablet y pantallas medianas */
+  @media screen and (max-width: 768px) {
+    section, .container {
+      padding: 3rem 1rem;
+    }
+    .hero-text {
+      padding: 2rem;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+    }
+    nav {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0.5rem 0;
+    }
+    .grid-cuadros {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .cuadro img {
+      height: 240px;
+    }
+    footer {
+      padding: 1rem;
+    }
+  }
+  <!-- … tu CSS previo … -->
+
+  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+  @media screen and (max-width: 480px) {
+    /* Hero */
+    .hero-text {
+      padding: 1.5rem;
+    }
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+    .hero-text p {
+      font-size: 1rem;
+    }
+    /* Galería a 1 columna */
+    .grid-cuadros {
+      grid-template-columns: 1fr;
+    }
+    .cuadro img {
+      width: 100%;
+      height: auto;
+    }
+    /* Panel formulario ocupa ancho completo */
+    .formulario-panel {
+      width: 100%;
+    }
+    /* Footer más pequeño */
+    footer span,
+    footer a.boton {
+      font-size: 0.9rem;
+    }
+
+    /* NAV MÓVIL: Botones separados */
+    nav a {
+      /* anulamos el margin-left global */
+      margin-left: 0;
+      /* bloque completo para que ocupe toda la fila */
+      display: block;
+      /* separación vertical */
+      margin: 0.75rem 0;
+      /* relleno tipo botón */
+      padding: 0.75rem 1rem;
+      background: rgba(0,0,0,0.05);
+      border-radius: 4px;
+      text-align: center;
+    }
+    nav a:hover {
+      background: rgba(0,0,0,0.1);
+    }
+  }  
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo-container">
+      <span class="logo-text">Iciar Ochoa</span>
+      <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
+    </div>
+    <div>
+      <a href="ici.html#inicio">OBRAS DISPONIBLES</a>
+      <a href="Encargos.html">Encargos</a>
+      <a href="sobre-mi.html">Sobre mi</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="obra-detalle">
+      <img src="caravinagre.jpeg" alt="Sol">
+      <h1>Caravinagre</h1>
+      <p>Acuarela · 30x30 cm</p>
+      <p>Precio: 110 €</p>
+      
+      
+<a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>      
+      <div class="fotos-adicionales">
+        
+        <div class="galeria">
+        <img src="caravinagre2.jpeg" alt="Detalle 1 de la obra">
+        <img src="caravinagre3.jpeg" alt="Detalle 2 de la obra">
+        </div>
+      </div>
+      
+      <a class="volver" href="ici.html#cuadro-hortensias2">← Volver a la galería</a>
+    </div>
+  </div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 0rem;">
+    <span>iciarochoa@gmail.com</span>
+    <span>636 528 321</span>
+    <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+  </div>
+</footer>
+    <!-- FORMULARIO LATERAL -->
+<div class="formulario-panel" id="formularioPanel">
+  <h2>Solicitar información</h2>
+  <form id="formularioContacto" action="https://formspree.io/f/mjkrpoop" method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 500 000 000" required>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" rows="5" required>Estoy interesado/a en la obra "NOMBRE DE LA OBRA". Me gustaría recibir más información.</textarea>
+
+    <!-- Campo oculto con el nombre del archivo -->
+    <input type="hidden" id="paginaOrigen" name="paginaOrigen" value="">
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Botón cerrar -->
+  <button class="cerrar-formulario" onclick="cerrarFormulario()">Volver</button>
+</div>
+    <!-- Visor ampliado -->
+  <div class="visor-overlay" id="visor">
+    <img src="" alt="Imagen ampliada">
+  </div>
+
+  <script>
+    const visor = document.getElementById('visor');
+    const visorImg = visor.querySelector('img');
+    const galeriaImgs = document.querySelectorAll('.galeria img');
+
+    galeriaImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        visor.style.display = 'flex';
+        visorImg.src = img.src;
+        visorImg.alt = img.alt;
+      });
+    });
+
+    visor.addEventListener('click', (e) => {
+      if (e.target !== visorImg) {
+        visor.style.display = 'none';
+        visorImg.src = '';
+      }
+    });
+  </script>
+  <script>
+  function abrirFormulario() {
+    document.getElementById('formularioPanel').classList.add('active');
+  }
+
+  function cerrarFormulario() {
+    document.getElementById('formularioPanel').classList.remove('active');
+  }
+
+  // Insertar automáticamente el nombre del archivo HTML en el formulario
+  document.addEventListener("DOMContentLoaded", () => {
+    const ruta = window.location.pathname.split("/").pop(); // nombre.html
+    const campo = document.getElementById("paginaOrigen");
+    if (campo) campo.value = ruta;
+
+    // También actualiza el texto del mensaje con el nombre real de la obra
+    const obra = document.querySelector("h1")?.innerText || "";
+    const mensaje = document.getElementById("mensaje");
+    if (mensaje && obra) {
+      mensaje.textContent = `Estoy interesado/a en la obra "${obra}". Me gustaría recibir más información.`;
+    }
+  });
+</script>
+
+  
+
+</body>
+</html>

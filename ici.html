@@ -330,6 +330,62 @@ hr {
       font-family: inherit;
     }
 
+      /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+
+  /* Tablet y pantallas medianas */
+  @media screen and (max-width: 768px) {
+    section, .container {
+      padding: 3rem 1rem;
+    }
+    .hero-text {
+      padding: 2rem;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+    }
+    nav {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0.5rem 0;
+    }
+    .grid-cuadros {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .cuadro img {
+      height: 240px;
+    }
+    footer {
+      padding: 1rem;
+    }
+  }
+
+  /* Móviles pequeños */
+  @media screen and (max-width: 480px) {
+    .hero-text {
+      padding: 1.5rem;
+    }
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+    .hero-text p {
+      font-size: 1rem;
+    }
+    .grid-cuadros {
+      grid-template-columns: 1fr;
+    }
+    .cuadro img {
+      width: 100%;
+      height: auto;
+    }
+    .formulario-panel {
+      width: 100%;
+    }
+    footer span, footer a.boton {
+      font-size: 0.9rem;
+    }
+  }
 
     
   </style>
@@ -340,7 +396,7 @@ hr {
   <nav>
     <div class="logo-container">
       <span class="logo-text">Iciar Ochoa</span>
-      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+      <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
       <a href="#inicio">OBRAS DISPONIBLES</a>
@@ -353,14 +409,18 @@ hr {
 <!-- HERO -->
 <header id="inicio">
   <div class="hero-text">
-    <h1>Pintura contemporánea con alma</h1>
-    <p><h2>Óleos y acuarelas. Obras disponibles y encargos</h2></p><br>
+    <h1>Pintura con alma</h1>
+    <p style="font-weight: normal;">Obras disponibles y por encargo.</p><br>
 
-    <div class="quote" style="margin-top: 2rem;">
-      <p>“Un artista no debe pintar lo que ve, sino lo que siente. La verdad del arte está en el sentimiento.” — Joaquin Sorolla</p>
+    <div class="quote" style="margin-top: 2rem; font-size: 1.6rem;">
+      <p>“Un artista no debe pintar lo que ve, sino lo que siente. La verdad del arte está en el sentimiento.”</p>
+      <p> — Joaquin Sorolla — </p>
     </div>
   </div>
 </header>
+
+
+
 
 
 
@@ -374,9 +434,8 @@ hr {
     <div class="filtro-precio">
       <label for="ordenar">Filtrar por:</label>
       <select id="ordenar">
-        <option value="default">Seleccionar</option>
         <option value="tecnica">Técnica</option>
-        <option value="asc">Precio</option>
+        <option value="precio">Precio</option>
         <option value="tamano">Tamaño</option>
     </select>
 
@@ -466,9 +525,9 @@ hr {
       
       <!-- Fila 5 -->
       <div class="cuadro" id="cuadro-kiosko">
-        <a href="kiosko.html"><img src="kiosko.jpg" alt="Cuadro 13"></a>
+        <a href="kiosko.html"><img src="kiosko.jpeg" alt="Cuadro 13"></a>
         <h3>Kiosko Plaza Castillo</h3>
-        <p>Acuarela · 50x50 cm</p>
+        <p>Acrílico · 50x50 cm</p>
         <p>200 €</p>
       </div>
       <div class="cuadro" id="cuadro-caballo">
@@ -485,32 +544,27 @@ hr {
       </div>
       
       <!-- Fila 6 -->
-      <div class="cuadro" id="cuadro-flores1">
+      <div class="cuadro" id="cuadro-flor">
         <a href="flor1.html"><img src="florescuerda1.jpg" alt="Cuadro 13"></a>
         <h3>Flores y Cuerda I</h3>
         <p>Acuarela · 42x52 cm</p>
         <p>95 €</p>
       </div>
-      <div class="cuadro" id="cuadro-flores2">
+      <div class="cuadro" id="cuadro-flor2">
         <a href="flor2.html"><img src="florescuerda2.jpg" alt="Cuadro 13"></a>
         <h3>Flores y Cuerda II</h3>
         <p>Acuarela · 42x52 cm</p>
         <p>95 €</p>
       </div>
-      <div class="cuadro" id="cuadro-ciudadela">
-        <a href="ciudadela.html"><img src="ciudadela.jpg" alt="Cuadro 13"></a>
-        <h3>Ciudadela</h3>
+      <div class="cuadro" id="cuadro-puerta1">
+        <a href="puerta1.html"><img src="puerta1.jpeg" alt="Cuadro 13"></a>
+        <h3>Puerta I</h3>
         <p>Acuarela · 42x52 cm</p>
         <p>90 €</p>
       </div>
       
       <!-- Fila 7 -->
-      <div class="cuadro" id="cuadro-puerta1">
-        <a href="puerta1.html"><img src="puerta1.jpg" alt="Cuadro 13"></a>
-        <h3>Puerta I</h3>
-        <p>Acuarela · 42x52 cm</p>
-        <p>90 €</p>
-      </div>
+
       <div class="cuadro" id="cuadro-puerta2">
         <a href="puerta2.html"><img src="puerta2.jpg" alt="Cuadro 13"></a>
         <h3>Puerta II</h3>
@@ -520,6 +574,12 @@ hr {
       <div class="cuadro" id="cuadro-puerta3">
         <a href="puerta3.html"><img src="puerta_3.jpeg" alt="Cuadro 13"></a>
         <h3>Puerta III</h3>
+        <p>Acuarela · 42x52 cm</p>
+        <p>90 €</p>
+      </div>
+      <div class="cuadro" id="cuadro-ciudadela">
+        <a href="ciudadela.html"><img src="ciudadela2.jpeg" alt="Cuadro 13"></a>
+        <h3>Ciudadela</h3>
         <p>Acuarela · 42x52 cm</p>
         <p>90 €</p>
       </div>
@@ -534,11 +594,11 @@ hr {
       <div class="cuadro" id="cuadro-sol">
         <a href="sol.html"><img src="sol.jpg" alt="Cuadro 13"></a>
         <h3>Sol</h3>
-        <p>Acrilico y pan de oro · 50x50 cm</p>
+        <p>Acrílico y pan de oro · 50x50 cm</p>
         <p>150 €</p>
       </div>
       <div class="cuadro" id="cuadro-peces">
-        <a href="peces.html"><img src="peces.jpeg" alt="Cuadro 13"></a>
+        <a href="peces.html"><img src="peces2.jpeg" alt="Cuadro 13"></a>
         <h3>Peces</h3>
         <p>Acuarela · 24x18 cm</p>
         <p>60 €</p>
@@ -552,10 +612,30 @@ hr {
         <p>140 €</p>
       </div>
       <div class="cuadro" id="cuadro-olas">
+        <a href="hortensiasAzules.html"><img src="horaz.jpeg" alt="Cuadro 13"></a>
+        <h3>Hortensias azules</h3>
+        <p>Acuarela · 20x20 cm</p>
+        <p>40 € unidad</p>
+      </div>
+      <div class="cuadro" id="cuadro-olas">
         <a href="Olas.html"><img src="olas.jpeg" alt="Cuadro 13"></a>
         <h3>Olas</h3>
         <p>Acuarela · 42x32 cm</p>
         <p>80 €</p>
+      </div>
+      <div class="cuadro" id="cuadro-olas">
+        <a href="caravinagre.html"><img src="caravinagre.jpeg" alt="Cuadro 13"></a>
+        <h3>Caravinagre</h3>
+        <p>Acuarela · 30x30 cm</p>
+        <p>110 €</p>
+      </div>
+      
+      <!-- Fila 10 -->
+      <div class="cuadro" id="cuadro-olas">
+        <a href="verrugas.html"><img src="verrugas.jpeg" alt="Cuadro 13"></a>
+        <h3>Verrugas</h3>
+        <p>Acuarela · 30x30 cm</p>
+        <p>110 €</p>
       </div>
     
     </div>
@@ -563,16 +643,27 @@ hr {
 
 
 
+<!-- FOOTER -->
+<footer>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 0rem;">
+    <span>iciarochoa@gmail.com</span>
+    <span>636 528 321</span>
+    <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+  </div>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
-  </footer>
+
   
    <!-- SCRIPT PARA ORDENAR -->
-  <script>
-  document.getElementById('ordenar').addEventListener('change', function () {
-    const orden = this.value;
+<script>
+  const ordenarCuadros = () => {
+    const select = document.getElementById('ordenar');
+    const orden = select.value;
     const contenedor = document.getElementById('contenedor-cuadros');
     const cuadros = Array.from(contenedor.querySelectorAll('.cuadro'));
 
@@ -580,7 +671,6 @@ hr {
       const texto = cuadro.querySelector('p:last-of-type')?.innerText || '';
       return parseFloat(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
     };
-
     const obtenerTecnica = cuadro => {
       const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
       if (texto.includes('óleo')) return 1;
@@ -588,20 +678,14 @@ hr {
       if (texto.includes('acuarela')) return 3;
       return 4;
     };
-
     const obtenerTamano = cuadro => {
       const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
-      const regex = /(\d+)\s*x\s*(\d+)/i;
-      const match = texto.match(regex);
-      if (match) {
-        const ancho = parseInt(match[1]);
-        const alto = parseInt(match[2]);
-        return ancho * alto; // área en cm²
-      }
+      const match = texto.match(/(\d+)\s*x\s*(\d+)/i);
+      if (match) return parseInt(match[1]) * parseInt(match[2]);
       return Infinity;
     };
 
-    if (orden === 'asc') {
+    if (orden === 'precio') {
       cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
     } else if (orden === 'tecnica') {
       cuadros.sort((a, b) => obtenerTecnica(a) - obtenerTecnica(b));
@@ -613,8 +697,19 @@ hr {
 
     contenedor.innerHTML = '';
     cuadros.forEach(cuadro => contenedor.appendChild(cuadro));
+  };
+
+  // Dispara la ordenación cuando el usuario cambie el filtro
+  document.getElementById('ordenar').addEventListener('change', ordenarCuadros);
+
+  // **Ordenación inicial** al cargar la página
+  document.addEventListener('DOMContentLoaded', () => {
+    // Opcional: puedes cambiar la opción por defecto aquí
+    document.getElementById('ordenar').value = 'tecnica';
+    ordenarCuadros();
   });
 </script>
+
 
 
 

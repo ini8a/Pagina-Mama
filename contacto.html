@@ -5,7 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contacto | Iciar Ochoa</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Para íconos de redes -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    main section {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+      line-height: 1.6;
+    }
+    /* Igualar tamaños a los de Sobre Mi */
+    main section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    main section p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    /* Logo encima del título, container inline-block */
+    .logo-contacto {
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .logo-contacto img {
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .datos-contacto {
+      margin-bottom: 2rem;
+    }
+    .datos-contacto .fila {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .datos-contacto span,
+    .datos-contacto a:not(.boton) {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      color: #333;
+      text-decoration: none;
+    }
+    .datos-contacto a:not(.boton):hover {
+      text-decoration: underline;
+    }
+    .datos-contacto a.boton {
+      background: #333;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .datos-contacto a.boton:hover {
+      background: #555;
+    }
+    .info-frase {
+      /* same size and color as datos-contacto text */
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 2.5rem;
+      /* remove italic to match */
+      font-style: normal;
+      line-height: 1.6;
+    }
+    .formulario-contacto {
+      background: rgba(234,229,223,0.95);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .formulario-contacto label {
+      font-weight: bold;
+      margin-top: 1.2rem;
+      display: block;
+      font-size: 1rem;
+    }
+    .formulario-contacto input,
+    .formulario-contacto textarea {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    .formulario-contacto button {
+      margin-top: 2rem;
+      background: #a86d6d;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: block;
+      width: 100%;
+      font-size: 1.1rem;
+    }
+    .formulario-contacto button:hover {
+      background: #8c5555;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,10 +130,10 @@
   <nav>
     <div class="logo-container">
       <span class="logo-text">Iciar Ochoa</span>
-      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+      <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
-      <a href="ici.html">obras disponibles</a>
+      <a href="ici.html">OBRAS DISPONIBLES</a>
       <a href="Encargos.html">Encargos</a>
       <a href="sobre-mi.html">SOBRE MI</a>
       <a href="contacto.html">CONTACTO</a>
@@ -26,57 +143,70 @@
   <!-- MAIN -->
   <main>
     <section>
-      <h2 style="text-align:center; margin-bottom: 1rem;">Contacto</h2>
-      <p style="text-align:center; margin-bottom: 2rem;">Puedes escribirme directamente usando el siguiente formulario o contactar por redes:</p>
+      <div class="logo-contacto">
+        <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" id="logoShrink">
+        <h2 id="tituloContacto">Contacto</h2>
+      </div>
 
-      <div class="info-content" style="max-width: 500px; margin: auto; text-align: center;">
-        <!-- Datos de contacto visibles -->
-        <p>
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:iciarochoa@gmail.com" style="text-decoration: none; color: inherit;">iciarochoa@gmail.com</a>
-        </p>
-        <p>
-          <i class="fas fa-phone"></i>
-          <span style="color: inherit;">+34 636 52 83 21</span>
-        </p>
-
-        <!-- Formulario -->
-        <form class="formulario-contacto" action="https://formspree.io/f/xyzjwpda" method="POST" style="text-align: left; margin-top: 2rem;">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required>
-
-          <label for="telefono">Teléfono:</label>
-          <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 600 555 555" required>
-
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="mensaje">Mensaje:</label>
-          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-
-          <button type="submit">Enviar</button>
-        </form>
-
-        <!-- Redes sociales -->
-        <div style="margin-top: 2rem;">
-          <h3>Redes Sociales</h3>
-          <p>
-            <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank" style="margin-right: 10px;">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
-              <i class="fab fa-facebook"></i> Facebook
-            </a>
-          </p>
+      <div class="datos-contacto">
+        <div class="fila">
+          <span><i class="fas fa-envelope"></i>iciarochoa@gmail.com</span>
+          <span><i class="fas fa-phone"></i>636 52 83 21</span>
+        </div>
+        <div class="fila">
+          <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank">
+            <i class="fab fa-instagram"></i>Instagram
+          </a>
+          <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+            <i class="fab fa-facebook"></i>Facebook
+          </a>
         </div>
       </div>
+
+      <p class="info-frase">
+        Puedes escribirme directamente usando el siguiente formulario o contactar por redes:
+      </p>
+
+      <form class="formulario-contacto" action="https://formspree.io/f/mjkrpoop" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 600 555 555" required>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
     </section>
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:1rem;padding:0.5rem;">
+      <span>iciarochoapintora@gmail.com</span>
+      <span>636 528 321</span>
+      <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank">
+        <i class="fab fa-instagram"></i>Instagram
+      </a>
+      <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+        <i class="fab fa-facebook"></i>Facebook
+      </a>
+    </div>
   </footer>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // ajustar ancho del logo al ancho del título
+      const titulo = document.getElementById('tituloContacto');
+      const logo = document.getElementById('logoShrink');
+      const w = titulo.offsetWidth;
+      logo.style.width = w + 'px';
+    });
+  </script>
 </body>
 </html>

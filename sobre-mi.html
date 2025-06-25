@@ -5,36 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SOBRE MI | Iciar Ochoa</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Igualamos line-height de los párrafos a 1.6 */
+    .bio p {
+      line-height: 1.6;
+    }
+    /* Restricción del ancho y centrado del texto dentro de .bio */
+    .bio .bio-text {
+      max-width: 600px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    /* Dejar exposiciones con alineación por defecto */
+    .bio .bio-text h2 + p {
+      text-align: left;
+    }
+    .bio h2 {
+      text-align: center;
+    }
+    .bio img {
+      display: block;
+      margin: 2rem auto;
+      max-width: 180px;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 <body>
 
   <nav>
     <div class="logo-container">
       <span class="logo-text">Iciar Ochoa</span>
-      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+      <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
-      <a href="ici.html">obras disponibles</a>
+      <a href="ici.html">OBRAS DISPONIBLES</a>
       <a href="Encargos.html">Encargos</a>
       <a href="sobre-mi.html">SOBRE MI</a>
       <a href="contacto.html">CONTACTO</a>
     </div>
   </nav>
-<main>
-  <section class="bio">
-    <img src="ici.jpeg" alt="Foto de Iciar Ochoa">
-    <h2>Sobre mi</h2>
-    <p>Siempre he sabido que mi forma de expresarme pasa por la pintura. Desde muy joven, los pinceles y los colores me han atraído de forma especial. Empecé explorando el óleo, y con el tiempo llegaron el acrílico y la acuarela, ampliando mis posibilidades. Cada una de estas técnicas me ofrece un momento de creación distinto. Para mí, el valor de un cuadro reside en lo que puede ofrecer, tanto a mí mientras lo creo como a quien lo recibe cuando lo disfruta en su casa o su oficina. No es solo una imagen; es una emoción que pasa a formar parte de la vida de alguien. En cada cuadro que pinto dejo un poco de mi alma.</p><br>
-    
-    <h2>Exposiciones</h2>
-    <p>2025 · Âme & Art, Ciudadela Pamplona<br>
-       2025 · Centro SIC, c/ Leyre<br>
-       2025 · Cafetería Leiho, c/ Javier<br>
-       2024 · Nuevo Casino Iruña, Plaza del Castillo</p>
-  </section>
-</main>
+
+  <main>
+    <section class="bio">
+      <img src="ici.jpeg" alt="Foto de Iciar Ochoa">
+      <h2>Sobre mi</h2>
+      <div class="bio-text">
+        <p>Siempre he sabido que mi forma de expresarme pasa por la pintura. Desde muy joven, los pinceles y los colores me han atraído de forma especial. Empecé explorando el óleo, y con el tiempo llegaron el acrílico y la acuarela, ampliando mis posibilidades. Cada una de estas técnicas me ofrece un momento de creación distinto.</p>
+        <p>El valor de un cuadro reside en lo que puede ofrecer, tanto a mí mientras lo creo como a quien lo recibe cuando lo disfruta en su casa o su oficina. Me gusta crear obras que tengan un sentido para quien las compre y que resulten al mismo tiempo decorativas para que pueda integrarse bien y formar parte de vuestra casa. No es solo una imagen, es una emoción que pasa a formar parte de la vida de alguien.</p>
+        <p>En cada cuadro que pinto dejo un poco de mi alma.</p><br>
+      </div>
+      <h2>Exposiciones</h2>
+      <div class="bio-text">
+        <p>2025 · Âme & Art, Ciudadela Pamplona<br>
+           2025 · Centro SIC, c/ Leyre<br>
+           2025 · Cafetería Leiho, c/ Javier<br>
+           2024 · Nuevo Casino Iruña, Plaza del Castillo</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 0rem;">
+      <span>iciarochoapintora@gmail.com</span>
+      <span>636 528 321</span>
+      <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+    </div>
   </footer>
 
 </body>

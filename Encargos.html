@@ -8,12 +8,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Igualamos tamaños de texto a los usados en "Sobre mi" */
+    .info-content h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    /* Sólo estrechamos y centramos el bloque de texto bajo el título */
+    .info-content .info-text {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Estilos específicos de esta página */
     .imagenes-dobles {
       display: flex;
       justify-content: center;
       gap: 0.5rem;
     }
-
     .imagenes-dobles img {
       width: 48%;
       height: auto;
@@ -21,7 +37,6 @@
       object-fit: contain;
       background-color: #f0f0f0;
     }
-
     .grid-cuadros {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -30,7 +45,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .cuadro {
       background: rgba(234, 229, 223, 0.95);
       border-radius: 10px;
@@ -40,27 +54,110 @@
       transition: transform 0.3s ease, box-shadow 0.3s;
       padding-bottom: 1rem;
     }
+    .cuadro h3 {
+      font-size: 1.1rem; /* igual que párrafos */
+      margin-top: 1rem;
+      color: #222;
+    }
+    /* Anula el hover solo aquí */
+    body .grid-cuadros .cuadro:hover {
+      transform: none !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+    }
+    body .grid-cuadros .cuadro img:hover {
+      transform: none !important;
+    }
 
+    /* Botón de solicitud */
+    .boton-correo {
+      display: inline-block;
+      margin: 2rem auto;
+      background: #a86d6d;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .boton-correo:hover {
+      background: #8c5555;
+    }
 
+    /* Panel lateral del formulario */
+    .formulario-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 400px;
+      max-width: 90%;
+      height: 100%;
+      background-color: white;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 3000;
+      padding: 2rem 2rem 4rem 2rem;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+    }
+    .formulario-panel.active {
+      right: 0;
+    }
+    .formulario-panel h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #222;
+    }
+    .formulario-panel label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .formulario-panel input,
+    .formulario-panel textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .formulario-panel button {
+      margin-top: 1rem;
+      width: 100%;
+      background-color: #a86d6d;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .formulario-panel button:hover {
+      background-color: #8c5555;
+    }
+    .cerrar-formulario {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
   </style>
-  <style>
-  /* Anula el hover solo para este archivo */
-  body .grid-cuadros .cuadro:hover {
-    transform: none !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
-  }
-
-  body .grid-cuadros .cuadro img:hover {
-    transform: none !important;
-  }
-</style>
-
 </head>
 <body>
+
   <nav>
     <div class="logo-container">
       <span class="logo-text">Iciar Ochoa</span>
-      <img src="logo.jpeg" alt="Logotipo Iciar Ochoa" class="logo-img">
+      <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
       <a href="ici.html#inicio">OBRAS DISPONIBLES</a>
@@ -72,58 +169,59 @@
 
   <main>
     <section class="info-content">
-      <h1>Encargos Realizados</h1>
-      <p><strong>¿Tienes una imagen especial que te gustaría convertir en arte?</strong></p>
-      <p>Te presento algunos encargos realizados: obras únicas creadas a partir de fotografías personales, momentos inolvidables o paisajes significativos. Cada encargo es una colaboración en la que transformo tu ilusión en una pieza original y llena de alma.</p>
-      <p>Ya sea un lugar, una mascota, un momento especial… cualquier recuerdo que quieras inmortalizar, estaré encantada de trabajar contigo para darle forma.</p>
+      <h1>Encargos</h1>
+      <div class="info-text">
+        <p><strong>¿Tienes una imagen especial que te gustaría convertir en arte?</strong></p>
+        <p>Te presento algunos encargos realizados. Obras únicas creadas a partir de fotografías personales, momentos inolvidables o paisajes significativos.</p>
+        <p>Cada encargo es una colaboración en la que transformo tu ilusión en una pieza original y llena de alma.</p>
+        <p>Ya sea un lugar, una mascota, un momento especial… cualquier recuerdo que quieras inmortalizar, estaré encantada de trabajar contigo para darle forma.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>
+      </div>
     </section>
 
     <section class="grid-cuadros">
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="perroO.jpeg" alt="Foto original">
-            <img src="perroC.jpeg" alt="Obra final">
+          <img src="perroO.jpeg" alt="Foto original">
+          <img src="perroC.jpeg" alt="Obra final">
         </div>
         <h3>Mascotas</h3>
       </div>
-      
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="flamencaO.jpeg" alt="Foto original">
-            <img src="flamencaC.jpeg" alt="Obra final">
+          <img src="flamencaO.jpeg" alt="Foto original">
+          <img src="flamencaC.jpeg" alt="Obra final">
         </div>
         <h3>Aficiones. Sevillanas</h3>
       </div>
-
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="playaO.jpeg" alt="Foto original">
-            <img src="playaC.jpeg" alt="Obra final">
+          <img src="playaO.jpeg" alt="Foto original">
+          <img src="playaC.jpeg" alt="Obra final">
         </div>
         <h3>Un rincón especial</h3>
       </div>
-      
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="padelO.jpeg" alt="Foto original">
-            <img src="padelC.jpeg" alt="Obra final">
+          <img src="padelO.jpeg" alt="Foto original">
+          <img src="padelC.jpeg" alt="Obra final">
         </div>
         <h3>Aficiones. Deportes</h3>
       </div>
-
-      
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="ochoasO.jpeg" alt="Foto original">
-            <img src="ochoasC.jpeg" alt="Obra final">
+          <img src="ochoasO.jpeg" alt="Foto original">
+          <img src="ochoasC.jpeg" alt="Obra final">
         </div>
         <h3>Momentos para recordar</h3>
       </div>
-
       <div class="cuadro">
         <div class="imagenes-dobles">
-            <img src="rioO.jpeg" alt="Foto original">
-            <img src="rioC.jpeg" alt="Obra final">
+          <img src="rioO.jpeg" alt="Foto original">
+          <img src="rioC.jpeg" alt="Obra final">
         </div>
         <h3>Un lugar especial</h3>
       </div>
@@ -131,7 +229,47 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Iciar Ochoa. Todos los derechos reservados.</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:1rem;padding:0.5rem;">
+      <span>iciarochoapintora@gmail.com</span>
+      <span>636 528 321</span>
+      <a href="https://www.instagram.com/iciarochoapintora/" class="boton" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+      <a href="https://www.facebook.com/iciarochoapintora/" class="boton" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
+    </div>
   </footer>
+
+  <div class="formulario-panel" id="formularioPanel">
+    <h2>Solicitar información</h2>
+    <form id="formularioContacto" action="https://formspree.io/f/mjkrpoop" method="POST">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 600 555 555" required>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" required>Me gustaría tener más información sobre cómo hacer un encargo.</textarea>
+
+      <input type="hidden" id="paginaOrigen" name="paginaOrigen" value="">
+      <button type="submit">Enviar</button>
+    </form>
+    <button class="cerrar-formulario" onclick="cerrarFormulario()">Volver</button>
+  </div>
+
+  <script>
+    function abrirFormulario() {
+      document.getElementById('formularioPanel').classList.add('active');
+    }
+    function cerrarFormulario() {
+      document.getElementById('formularioPanel').classList.remove('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const origen = window.location.pathname.split('/').pop();
+      document.getElementById('paginaOrigen').value = origen;
+    });
+  </script>
+
 </body>
 </html>

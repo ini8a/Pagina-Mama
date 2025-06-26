@@ -680,7 +680,19 @@ hr {
   
    <!-- SCRIPT PARA ORDENAR -->
 <script>
-  const ordenarCuadros = () => {
+  // Al cargar la página, guardamos la posición original de cada cuadro
+  document.addEventListener('DOMContentLoaded', () => {
+    const contenedor = document.getElementById('contenedor-cuadros');
+    Array.from(contenedor.children).forEach((cuadro, i) => {
+      cuadro.dataset.order = i;
+    });
+
+    // Por defecto seleccionamos "técnica" y aplicamos la ordenación
+    document.getElementById('ordenar').value = 'tecnica';
+    ordenarCuadros();
+  });
+
+  function ordenarCuadros() {
     const select = document.getElementById('ordenar');
     const orden = select.value;
     const contenedor = document.getElementById('contenedor-cuadros');
@@ -707,7 +719,12 @@ hr {
     if (orden === 'precio') {
       cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
     } else if (orden === 'tecnica') {
-      cuadros.sort((a, b) => obtenerTecnica(a) - obtenerTecnica(b));
+      cuadros.sort((a, b) => {
+        const ta = obtenerTecnica(a), tb = obtenerTecnica(b);
+        if (ta !== tb) return ta - tb;
+        // desempate según orden original
+        return a.dataset.order - b.dataset.order;
+      });
     } else if (orden === 'tamano') {
       cuadros.sort((a, b) => obtenerTamano(a) - obtenerTamano(b));
     } else {
@@ -716,17 +733,10 @@ hr {
 
     contenedor.innerHTML = '';
     cuadros.forEach(cuadro => contenedor.appendChild(cuadro));
-  };
+  }
 
   // Dispara la ordenación cuando el usuario cambie el filtro
   document.getElementById('ordenar').addEventListener('change', ordenarCuadros);
-
-  // **Ordenación inicial** al cargar la página
-  document.addEventListener('DOMContentLoaded', () => {
-    // Opcional: puedes cambiar la opción por defecto aquí
-    document.getElementById('ordenar').value = 'tecnica';
-    ordenarCuadros();
-  });
 </script>
 
 

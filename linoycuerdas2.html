@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Puente del Kursaal | Iciar Ochoa</title>
+  <title>Lino y cuerdas | Iciar Ochoa</title>
   <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-   * {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -306,11 +306,9 @@
       padding: 1rem;
     }
   }
-  <!-- … tu CSS previo … -->
 
-  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+  /* Móviles pequeños */
   @media screen and (max-width: 480px) {
-    /* Hero */
     .hero-text {
       padding: 1.5rem;
     }
@@ -320,7 +318,6 @@
     .hero-text p {
       font-size: 1rem;
     }
-    /* Galería a 1 columna */
     .grid-cuadros {
       grid-template-columns: 1fr;
     }
@@ -328,38 +325,18 @@
       width: 100%;
       height: auto;
     }
-    /* Panel formulario ocupa ancho completo */
     .formulario-panel {
       width: 100%;
     }
-    /* Footer más pequeño */
-    footer span,
-    footer a.boton {
+    footer span, footer a.boton {
       font-size: 0.9rem;
     }
+  }
 
-    /* NAV MÓVIL: Botones separados */
-    nav a {
-      /* anulamos el margin-left global */
-      margin-left: 0;
-      /* bloque completo para que ocupe toda la fila */
-      display: block;
-      /* separación vertical */
-      margin: 0.75rem 0;
-      /* relleno tipo botón */
-      padding: 0.75rem 1rem;
-      background: rgba(0,0,0,0.05);
-      border-radius: 4px;
-      text-align: center;
-    }
-    nav a:hover {
-      background: rgba(0,0,0,0.1);
-    }
-  }  
-</style>
+
+  </style>
 </head>
 <body>
-
   <nav>
     <div class="logo-container">
       <span class="logo-text">Iciar Ochoa</span>
@@ -372,31 +349,27 @@
       <a href="contacto.html">Contacto</a>
     </div>
   </nav>
-
   <div class="container">
     <div class="obra-detalle">
-      <img src="kursal.jpeg" alt="Sol">
-      <h1>Puente del Kursaal</h1>
-      <p>Acuarela · 50x70 cm</p>
-      <p>Precio: Opción con marco 320 € (sin marco 250 €)</p>
+      <img src="lino_cuerdas2.jpeg" alt="Lino y cuerdas">
+      <h1>Lino y cuerdas</h1>
+      <p>Acuarela · 50x50 cm</p>
+      <p>Precio: 190 €</p>
       
       
 <a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>      
       <div class="fotos-adicionales">
         
         <div class="galeria">
-        <img src="donosti.jpeg" alt="Detalle 1 de la obra">
-        <img src="kursal3.jpeg" alt="Detalle 1 de la obra">
-        <img src="donos2.jpeg" alt="Detalle 1 de la obra">
-        <img src="donos3.jpeg" alt="Detalle 1 de la obra">
-        <img src="kursal2.jpeg" alt="Detalle 3 de la obra">
+        <img src="lino_c2.jpeg" alt="Detalle 1 de la obra">
+        <img src="lino_c1.jpeg" alt="Detalle 2 de la obra">
+        <img src="lino_c3.jpeg" alt="Detalle 3 de la obra">
         </div>
       </div>
       
-      <a class="volver" href="ici.html#cuadro-donos">← Volver a la galería</a>
+      <a class="volver" href="ici.html#cuadro-lino_c">← Volver a la galería</a>
     </div>
   </div>
-
 <!-- FOOTER -->
 <footer>
   <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 0rem;">
@@ -485,6 +458,5 @@
 </script>
 
   
-
 </body>
 </html>

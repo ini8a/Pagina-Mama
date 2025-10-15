@@ -447,6 +447,8 @@ hr {
     <div class="filtro-precio">
       <label for="ordenar">Filtrar por:</label>
       <select id="ordenar">
+        <option value="navarra">Navarra</option>
+        <option value="guipuzcoa">Guipúzcoa</option>
         <option value="tecnica">Técnica</option>
         <option value="precio">Precio</option>
         <option value="tamano">Tamaño</option>
@@ -552,7 +554,7 @@ hr {
         <p>95 €</p>
       </div>
       <div class="cuadro" id="cuadro-kiosko">
-        <a href="kiosko.html"><img src="kiosko.jpg" alt="Cuadro 13"></a>
+        <a href="kiosko.html"><img src="kiosko.jpeg" alt="Cuadro 13"></a>
         <h3>Kiosko Plaza Castillo</h3>
         <p>Acrílico · 50x50 cm</p>
         <p>200 €</p>
@@ -574,7 +576,7 @@ hr {
       </div>
       
       <div class="cuadro" id="cuadro-puerta1">
-        <a href="puerta1.html"><img src="puerta1.jpg" alt="Cuadro 13"></a>
+        <a href="puerta1.html"><img src="puerta1.jpeg" alt="Cuadro 13"></a>
         <h3>Puerta I</h3>
         <p>Acuarela · 42x52 cm</p>
         <p>90 €</p>
@@ -724,64 +726,124 @@ hr {
   
    <!-- SCRIPT PARA ORDENAR -->
 <script>
-  // Al cargar la página, guardamos la posición original de cada cuadro
-  document.addEventListener('DOMContentLoaded', () => {
-    const contenedor = document.getElementById('contenedor-cuadros');
-    Array.from(contenedor.children).forEach((cuadro, i) => {
-      cuadro.dataset.order = i;
-    });
+function iniciarGaleria() {
+  const contenedor = document.getElementById('contenedor-cuadros');
+  const select = document.getElementById('ordenar');
+  if (!contenedor || !select) return;
 
-    // Por defecto seleccionamos "técnica" y aplicamos la ordenación
-    document.getElementById('ordenar').value = 'tecnica';
-    ordenarCuadros();
+  // Guardar orden original
+  Array.from(contenedor.children).forEach((cuadro, i) => {
+    cuadro.dataset.order = i;
   });
 
-  function ordenarCuadros() {
-    const select = document.getElementById('ordenar');
+  // Aplicar filtro actual
+  aplicarFiltroDesdeURL();
+
+  // Escuchar cambios manuales
+  select.addEventListener('change', () => ordenarCuadros(true));
+
+  // Actualizar enlaces de obras
+  actualizarEnlaces();
+
+  // Escuchar navegación del historial (atrás / adelante)
+  window.addEventListener('popstate', aplicarFiltroDesdeURL);
+
+  // ---- FUNCIONES ----
+
+  function aplicarFiltroDesdeURL() {
+    const params = new URLSearchParams(window.location.search);
+    const filtro = params.get('filtro');
+    select.value = filtro || 'tecnica';
+    ordenarCuadros(false);
+  }
+
+  function actualizarEnlaces() {
+    const filtroActual = new URL(window.location).searchParams.get('filtro');
+    document.querySelectorAll('.cuadro a').forEach(enlace => {
+      const url = new URL(enlace.href, window.location.origin);
+      if (filtroActual) url.searchParams.set('filtro', filtroActual);
+      enlace.href = url.toString();
+    });
+  }
+
+  function ordenarCuadros(actualizarURL = true) {
     const orden = select.value;
-    const contenedor = document.getElementById('contenedor-cuadros');
     const cuadros = Array.from(contenedor.querySelectorAll('.cuadro'));
 
-    const obtenerPrecio = cuadro => {
-      const texto = cuadro.querySelector('p:last-of-type')?.innerText || '';
-      return parseFloat(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
-    };
-    const obtenerTecnica = cuadro => {
-      const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
-      if (texto.includes('óleo')) return 1;
-      if (texto.includes('acrílico')) return 2;
-      if (texto.includes('acuarela')) return 3;
-      return 4;
-    };
-    const obtenerTamano = cuadro => {
-      const texto = cuadro.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
-      const match = texto.match(/(\d+)\s*x\s*(\d+)/i);
-      if (match) return parseInt(match[1]) * parseInt(match[2]);
-      return Infinity;
-    };
+    // Actualizar URL si el cambio es manual
+    if (actualizarURL) {
+      const url = new URL(window.location);
+      url.searchParams.set('filtro', orden);
+      window.history.replaceState({}, '', url);
+      actualizarEnlaces();
+    }
 
-    if (orden === 'precio') {
-      cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
-    } else if (orden === 'tecnica') {
-      cuadros.sort((a, b) => {
-        const ta = obtenerTecnica(a), tb = obtenerTecnica(b);
-        if (ta !== tb) return ta - tb;
-        // desempate según orden original
-        return a.dataset.order - b.dataset.order;
+    // ---- FILTROS POR REGIÓN ----
+    if (orden === 'navarra' || orden === 'guipuzcoa') {
+      const obras = {
+        navarra: [
+          'Kiosko Plaza Castillo', 'Caravinagre', 'Verrugas',
+          'San Fermin Serie Sepia Mod.1', 'San Fermin Serie Sepia Mod.2',
+          'San Fermin Serie Sepia Mod.3', 'San Fermin Serie Sepia Vertical',
+          'Caballo Blanco'
+        ],
+        guipuzcoa: [
+          'Peine de los Vientos', 'Surfero I', 'Surfero II', 'Puente del Kursaal'
+        ]
+      };
+      cuadros.forEach(c => {
+        const titulo = c.querySelector('h3')?.innerText.trim() || '';
+        c.style.display = obras[orden].includes(titulo) ? 'block' : 'none';
       });
-    } else if (orden === 'tamano') {
-      cuadros.sort((a, b) => obtenerTamano(a) - obtenerTamano(b));
-    } else {
       return;
     }
 
-    contenedor.innerHTML = '';
-    cuadros.forEach(cuadro => contenedor.appendChild(cuadro));
-  }
+    // Mostrar todo por defecto
+    cuadros.forEach(c => c.style.display = 'block');
 
-  // Dispara la ordenación cuando el usuario cambie el filtro
-  document.getElementById('ordenar').addEventListener('change', ordenarCuadros);
+    // ---- ORDENACIONES ----
+    const obtenerPrecio = c =>
+      parseFloat(c.querySelector('p:last-of-type')?.innerText.replace(/[^\d,]/g, '').replace(',', '.') || 0);
+
+    const obtenerTecnica = c => {
+      const t = c.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
+      if (t.includes('óleo')) return 1;
+      if (t.includes('acrílico')) return 2;
+      if (t.includes('acuarela')) return 3;
+      return 4;
+    };
+
+    const obtenerTamano = c => {
+      const t = c.querySelector('p:nth-of-type(1)')?.innerText.toLowerCase() || '';
+      const m = t.match(/(\d+)\s*x\s*(\d+)/i);
+      return m ? parseInt(m[1]) * parseInt(m[2]) : Infinity;
+    };
+
+    if (orden === 'precio') cuadros.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
+    if (orden === 'tecnica') cuadros.sort((a, b) => obtenerTecnica(a) - obtenerTecnica(b) || a.dataset.order - b.dataset.order);
+    if (orden === 'tamano') cuadros.sort((a, b) => obtenerTamano(a) - obtenerTamano(b));
+
+    contenedor.innerHTML = '';
+    cuadros.forEach(c => contenedor.appendChild(c));
+  }
+}
+
+// --- EJECUCIÓN ---
+window.addEventListener('DOMContentLoaded', iniciarGaleria);
+
+// Si la página viene del historial (bfcache), re-aplica el filtro
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) iniciarGaleria();
+});
 </script>
+
+
+
+
+
+
+
+
 
 
 

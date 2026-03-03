@@ -449,6 +449,7 @@ hr {
       <select id="ordenar">
         <option value="navarra">Navarra</option>
         <option value="guipuzcoa">Guipuzcoa</option>
+        <option value="sanfermin">San Fermín</option> <!-- NUEVA OPCIÓN AÑADIDA -->
         <option value="tecnica">Técnica</option>
         <option value="precio">Precio</option>
         <option value="tamano">Tamaño</option>
@@ -798,8 +799,8 @@ function iniciarGaleria() {
       actualizarEnlaces();
     }
 
-    // ---- FILTROS POR REGIÓN ----
-    if (orden === 'navarra' || orden === 'guipuzcoa') {
+    // ---- FILTROS POR REGIÓN O TEMÁTICA ----
+    if (orden === 'navarra' || orden === 'guipuzcoa' || orden === 'sanfermin') { // Añadido 'sanfermin'
       const obras = {
         navarra: [
           'Kiosko Plaza Castillo', 'Caravinagre', 'Verrugas',
@@ -809,10 +810,17 @@ function iniciarGaleria() {
         ],
         guipuzcoa: [
           'Peine de los Vientos','Peine de los Vientos en relieve', 'Surfero - playa Zurriola', 'Surfero - playa Cantábrico', 'Puente del Kursaal', 'Hortensias', 'Hortensias azules', 'Paseo nuevo'
+        ],
+        // NUEVO FILTRO SAN FERMÍN
+        sanfermin: [
+          'San Fermin Serie Sepia Mod.1',
+          'San Fermin Serie Sepia Mod.2',
+          'San Fermin Serie Sepia Mod.3',
+          'San Fermin Serie Sepia Vertical'
         ]
       };
       cuadros.forEach(c => {
-const titulo = c.querySelector('h3')?.innerText.replace(/\s+/g, ' ').trim() || '';
+        const titulo = c.querySelector('h3')?.innerText.replace(/\s+/g, ' ').trim() || '';
         c.style.display = obras[orden].includes(titulo) ? 'block' : 'none';
       });
       return;

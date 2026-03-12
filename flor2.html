@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Retiro | Iciar Ochoa</title>
+  <title>Flores y Cuerda II | Iciar Ochoa</title>
   <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-   * {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -193,7 +193,7 @@
     .boton-correo:hover {
       background: #8c5555;
     }
-        /* PANEL LATERAL DE FORMULARIO */
+    /* PANEL LATERAL DE FORMULARIO */
     .formulario-panel {
       position: fixed;
       top: 0;
@@ -306,11 +306,9 @@
       padding: 1rem;
     }
   }
-  <!-- … tu CSS previo … -->
 
-  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+  /* Móviles pequeños */
   @media screen and (max-width: 480px) {
-    /* Hero */
     .hero-text {
       padding: 1.5rem;
     }
@@ -320,7 +318,6 @@
     .hero-text p {
       font-size: 1rem;
     }
-    /* Galería a 1 columna */
     .grid-cuadros {
       grid-template-columns: 1fr;
     }
@@ -328,48 +325,15 @@
       width: 100%;
       height: auto;
     }
-    /* Panel formulario ocupa ancho completo */
     .formulario-panel {
       width: 100%;
     }
-    /* Footer más pequeño */
-    footer span,
-    footer a.boton {
+    footer span, footer a.boton {
       font-size: 0.9rem;
     }
+  }
 
-    /* NAV MÓVIL: Botones separados */
-    nav a {
-      /* anulamos el margin-left global */
-      margin-left: 0;
-      /* bloque completo para que ocupe toda la fila */
-      display: block;
-      /* separación vertical */
-      margin: 0.75rem 0;
-      /* relleno tipo botón */
-      padding: 0.75rem 1rem;
-      background: rgba(0,0,0,0.05);
-      border-radius: 4px;
-      text-align: center;
-    }
-    nav a:hover {
-      background: rgba(0,0,0,0.1);
-    }
-    footer > div {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-    padding: 1rem !important;
-  }
-  footer > div span,
-  footer > div a.boton {
-    margin: 0 !important;
-  }
-  footer > div a.boton {
-    width: 100%;
-    text-align: center;
-  }
-  }  
-</style>
+  </style>
 </head>
 <body>
 
@@ -388,8 +352,8 @@
 
   <div class="container">
     <div class="obra-detalle">
-      <img src="retiro.jpg" alt="Sol">
-      <h1>Retiro</h1>
+      <img src="florescuerda1.jpg" alt="Sol">
+      <h1>Flores y Cuerda II</h1>
       <p>Acuarela · 42x52 cm</p>
       <p>Precio: 95 €</p>
       
@@ -398,12 +362,13 @@
       <div class="fotos-adicionales">
         
         <div class="galeria">
-        <img src="retiro2.jpeg" alt="Detalle 1 de la obra">
-
+        <img src="flor2_2.jpeg" alt="Detalle 4 de la obra">
+        <img src="flor2_3.jpeg" alt="Detalle 4 de la obra">
+        <img src="conjuntoflores.jpg" alt="Detalle 4 de la obra">
         </div>
       </div>
       
-      <a class="volver" href="Outlet.html#cuadro-retiro">← Volver a la galería</a>
+      <a class="volver" href="Outlet.html#cuadro-flor2">← Volver a la galería</a>
     </div>
   </div>
 

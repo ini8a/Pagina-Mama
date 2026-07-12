@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    * {
+   * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -19,13 +19,14 @@
     }
 
     body {
-      background-image: url('fondo.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      padding: 0px;
-      overflow-x: hidden;
-    }
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0px;
+}
+
+
 
     nav {
       position: fixed;
@@ -127,10 +128,16 @@
       padding: 2rem;
       margin-top: 5rem;
     }
-
+    
     .fotos-adicionales {
       margin-top: 3rem;
       text-align: center;
+    }
+
+    .fotos-adicionales h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #222;
     }
 
     .galeria {
@@ -181,14 +188,12 @@
       border-radius: 6px;
       text-decoration: none;
       transition: background 0.3s;
-      cursor: pointer;
     }
 
     .boton-correo:hover {
       background: #8c5555;
     }
-
-    /* PANEL LATERAL DE FORMULARIO */
+        /* PANEL LATERAL DE FORMULARIO */
     .formulario-panel {
       position: fixed;
       top: 0;
@@ -257,6 +262,7 @@
       cursor: pointer;
       color: #555;
     }
+    
     .boton {
   display: inline-block;
   background: #333;
@@ -300,9 +306,11 @@
       padding: 1rem;
     }
   }
+  <!-- … tu CSS previo … -->
 
-  /* Móviles pequeños */
+  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
   @media screen and (max-width: 480px) {
+    /* Hero */
     .hero-text {
       padding: 1.5rem;
     }
@@ -312,6 +320,7 @@
     .hero-text p {
       font-size: 1rem;
     }
+    /* Galería a 1 columna */
     .grid-cuadros {
       grid-template-columns: 1fr;
     }
@@ -319,11 +328,32 @@
       width: 100%;
       height: auto;
     }
+    /* Panel formulario ocupa ancho completo */
     .formulario-panel {
       width: 100%;
     }
-    footer span, footer a.boton {
+    /* Footer más pequeño */
+    footer span,
+    footer a.boton {
       font-size: 0.9rem;
+    }
+
+    /* NAV MÓVIL: Botones separados */
+    nav a {
+      /* anulamos el margin-left global */
+      margin-left: 0;
+      /* bloque completo para que ocupe toda la fila */
+      display: block;
+      /* separación vertical */
+      margin: 0.75rem 0;
+      /* relleno tipo botón */
+      padding: 0.75rem 1rem;
+      background: rgba(0,0,0,0.05);
+      border-radius: 4px;
+      text-align: center;
+    }
+    nav a:hover {
+      background: rgba(0,0,0,0.1);
     }
     footer > div {
     flex-direction: column !important;
@@ -338,10 +368,12 @@
     width: 100%;
     text-align: center;
   }
-  }
-
-    
-  </style>
+    footer div {
+      flex-direction: column;
+      gap: 0.8rem !important; /* Reduce un poco el espacio entre filas */
+    }
+  }  
+</style>
 </head>
 <body>
 
@@ -361,25 +393,22 @@
 
   <div class="container">
     <div class="obra-detalle">
-      <img src=“farola.jpeg" alt="Farola Sanse>
+      <img src="farola.jpeg" alt="Sol">
       <h1>Farola de la Concha</h1>
       <p>Acuarela · 70x50 cm</p>
-      <p>Precio: 250 €</p>
+      <p>Precio: 250 € </p>
       
-
-      <a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>
- <div class="descripcion-obra" style="margin-top: 2rem; text-align: left; border-top: 1px solid #ddd; padding-top: 1.5rem; max-width: 644px; margin-left: auto; margin-right: auto;">
-    <p style="font-size: 1rem; line-height: 1.5; color: #444; margin-bottom: 0.8rem;">
       
-  </div>
+<a class="boton-correo" onclick="abrirFormulario()">Solicitar información</a>      
       <div class="fotos-adicionales">
+        
         <div class="galeria">
-          <img src="farola1.jpeg" alt="Detalle 1 de la obra">
-          <img src="farola2.jpeg" alt="Detalle 2 de la obra">
-          <img src="farola3.jpeg" alt="Detalle 3 de la obra">
+        <img src="farola1.jpeg" alt="Detalle 1 de la obra">
+        <img src="farola2.jpeg" alt="Detalle 2 de la obra">
+        <img src="farola3.jpeg" alt="Detalle 3 de la obra">
         </div>
       </div>
-
+      
       <a class="volver" href="ici.html#cuadro-farola”>← Volver a la galería</a>
     </div>
   </div>
@@ -397,34 +426,32 @@
     </a>
   </div>
 </footer>
+    <!-- FORMULARIO LATERAL -->
+<div class="formulario-panel" id="formularioPanel">
+  <h2>Solicitar información</h2>
+  <form id="formularioContacto" action="https://formspree.io/f/mjkrpoop" method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
 
-  <!-- FORMULARIO LATERAL -->
-  <div class="formulario-panel" id="formularioPanel">
-    <h2>Solicitar información</h2>
-    <form id="formularioContacto" action="https://formspree.io/f/mjkrpoop" method="POST">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required>
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 500 000 000" required>
 
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" pattern="[0-9+ ]{7,}" placeholder="Ej: 500 000 000" required>
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required>
 
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required>
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" rows="5" required>Estoy interesado/a en la obra "NOMBRE DE LA OBRA". Me gustaría recibir más información.</textarea>
 
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" rows="5" required>Estoy interesado/a en la obra "Lavanda y Pájaros". Me gustaría recibir más información.</textarea>
+    <!-- Campo oculto con el nombre del archivo -->
+    <input type="hidden" id="paginaOrigen" name="paginaOrigen" value="">
 
-      <!-- Campo oculto con el nombre del archivo -->
-      <input type="hidden" id="paginaOrigen" name="paginaOrigen" value="">
+    <button type="submit">Enviar</button>
+  </form>
 
-      <button type="submit">Enviar</button>
-    </form>
-
-    <!-- Botón "X" movido al fondo -->
-    <button class="cerrar-formulario" onclick="cerrarFormulario()">Volver</button>
-  </div>
-
-  <!-- Visor ampliado -->
+  <!-- Botón cerrar -->
+  <button class="cerrar-formulario" onclick="cerrarFormulario()">Volver</button>
+</div>
+    <!-- Visor ampliado -->
   <div class="visor-overlay" id="visor">
     <img src="" alt="Imagen ampliada">
   </div>
@@ -448,22 +475,33 @@
         visorImg.src = '';
       }
     });
-
-    function abrirFormulario() {
-      document.getElementById('formularioPanel').classList.add('active');
-    }
-
-    function cerrarFormulario() {
-      document.getElementById('formularioPanel').classList.remove('active');
-    }
-
-    // Insertar automáticamente el nombre del archivo HTML en el formulario
-    document.addEventListener("DOMContentLoaded", () => {
-      const ruta = window.location.pathname.split("/").pop(); // nombre.html
-      const campo = document.getElementById("paginaOrigen");
-      if (campo) campo.value = ruta;
-    });
   </script>
+  <script>
+  function abrirFormulario() {
+    document.getElementById('formularioPanel').classList.add('active');
+  }
+
+  function cerrarFormulario() {
+    document.getElementById('formularioPanel').classList.remove('active');
+  }
+
+  // Insertar automáticamente el nombre del archivo HTML en el formulario
+  document.addEventListener("DOMContentLoaded", () => {
+    const ruta = window.location.pathname.split("/").pop(); // nombre.html
+    const campo = document.getElementById("paginaOrigen");
+    if (campo) campo.value = ruta;
+
+    // También actualiza el texto del mensaje con el nombre real de la obra
+    const obra = document.querySelector("h1")?.innerText || "";
+    const mensaje = document.getElementById("mensaje");
+    if (mensaje && obra) {
+      mensaje.textContent = `Estoy interesado/a en la obra "${obra}". Me gustaría recibir más información.`;
+    }
+  });
+</script>
+
+  
 
 </body>
 </html>
+

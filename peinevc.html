@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Peine del Viento | Iciar Ochoa</title>
+  <title>Surfero - playa Zurriola| Iciar Ochoa</title>
   <link href="https://fonts.googleapis.com/css2?family=Gill+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -193,6 +193,7 @@
     .boton-correo:hover {
       background: #8c5555;
     }
+    
         /* PANEL LATERAL DE FORMULARIO */
     .formulario-panel {
       position: fixed;
@@ -306,11 +307,9 @@
       padding: 1rem;
     }
   }
-  <!-- … tu CSS previo … -->
 
-  /* ------------ ADAPTACIÓN RESPONSIVE ------------ */
+  /* Móviles pequeños */
   @media screen and (max-width: 480px) {
-    /* Hero */
     .hero-text {
       padding: 1.5rem;
     }
@@ -320,7 +319,6 @@
     .hero-text p {
       font-size: 1rem;
     }
-    /* Galería a 1 columna */
     .grid-cuadros {
       grid-template-columns: 1fr;
     }
@@ -328,32 +326,11 @@
       width: 100%;
       height: auto;
     }
-    /* Panel formulario ocupa ancho completo */
     .formulario-panel {
       width: 100%;
     }
-    /* Footer más pequeño */
-    footer span,
-    footer a.boton {
+    footer span, footer a.boton {
       font-size: 0.9rem;
-    }
-
-    /* NAV MÓVIL: Botones separados */
-    nav a {
-      /* anulamos el margin-left global */
-      margin-left: 0;
-      /* bloque completo para que ocupe toda la fila */
-      display: block;
-      /* separación vertical */
-      margin: 0.75rem 0;
-      /* relleno tipo botón */
-      padding: 0.75rem 1rem;
-      background: rgba(0,0,0,0.05);
-      border-radius: 4px;
-      text-align: center;
-    }
-    nav a:hover {
-      background: rgba(0,0,0,0.1);
     }
     footer > div {
     flex-direction: column !important;
@@ -368,18 +345,15 @@
     width: 100%;
     text-align: center;
   }
-    footer div {
-      flex-direction: column;
-      gap: 0.8rem !important; /* Reduce un poco el espacio entre filas */
-    }
-  }  
-</style>
+  }
+
+
+  </style>
 </head>
 <body>
-
   <nav>
     <div class="logo-container">
-      <span class="logo-text">Iciar Ochoa</span>
+      <a href="ici.html#inicio" class="logo-text">Iciar Ochoa</a>
       <img src="logo_transparente.png" alt="Logotipo Iciar Ochoa" class="logo-img">
     </div>
     <div>
@@ -390,12 +364,11 @@
       <a href="contacto.html">Contacto</a>
     </div>
   </nav>
-
   <div class="container">
     <div class="obra-detalle">
-      <img src=“peinevc.jpeg" alt="Peinevc”>
+      <img src=“peinevc.jpeg" alt="Surfero I">
       <h1>Peine del Viento</h1>
-      <p>Oleo con texturas · 100x81 cm con Enmarcación 115x95 cm</p>
+      <p>Óleo en texturas · 100x81 cm con enmarcación 115x95 cm</p>
       <p>Precio: 850 €</p>
       
       
@@ -403,16 +376,15 @@
       <div class="fotos-adicionales">
         
         <div class="galeria">
-        <img src=“peinevc1.jpeg" alt="Detalle 1 de la obra">
-        <img src=“peinevc2.jpeg" alt="Detalle 2 de la obra">
+        <img src="peinevc1.jpeg" alt="Detalle 1 de la obra">
+        <img src="peinevc2.jpeg" alt="Detalle 2 de la obra">
         <img src=“peinevc3.jpeg" alt="Detalle 3 de la obra">
         </div>
       </div>
       
-      <a class="volver" href="ici.html#cuadro-peinevc">← Volver a la galería</a>
+      <a class="volver" href="ici.html#cuadro-surfero1">← Volver a la galería</a>
     </div>
   </div>
-
 <!-- FOOTER -->
 <footer>
   <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 0rem;">
@@ -501,6 +473,5 @@
 </script>
 
   
-
 </body>
 </html>
